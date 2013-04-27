@@ -169,7 +169,7 @@ if __name__ == '__main__':
     json_string = json.dumps(result)
 
 
-    with open('top10_posts.json', 'w') as fp:
+    with open('./data/top10_posts.json', 'w') as fp:
         fp.write(json_string)
 
     print 'done'

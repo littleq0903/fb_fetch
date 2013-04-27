@@ -157,6 +157,23 @@ if __name__ == '__main__':
         
     pprint(embed_top10_likemost_comments)
 
+    result = {
+            'top10_likemost_posts': top10_likemost_posts,
+            'top10_commentmost_posts': top10_commentmost_posts
+            }
+
+
+
+
+    import json
+    json_string = json.dumps(result)
+
+
+    with open('top10_posts.json', 'w') as fp:
+        fp.write(json_string)
+
+    print 'done'
+
 
 
       

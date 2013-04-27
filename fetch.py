@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import facebook
 import urllib2
 from pprint import PrettyPrinter
@@ -10,8 +11,6 @@ from accesstoken import *
 
 pp = PrettyPrinter(indent=2, depth=3)
 pprint = pp.pprint
-
-
 
 
 ma19_page = '118250504903757'
@@ -168,18 +167,13 @@ if __name__ == '__main__':
     map(embed_top10_likemost_comments, top10_likemost_posts)
     map(embed_top10_likemost_comments, top10_commentmost_posts)
 
-        
-
     result = {
             'top10_likemost_posts': top10_likemost_posts,
             'top10_commentmost_posts': top10_commentmost_posts
             }
 
-
-
-
     import json
-    json_string = json.dumps(result)
+    json_string = json.dumps(result, ensure_ascii=False)
 
 
     with open('./data/top10_posts.json', 'w') as fp:
@@ -187,22 +181,3 @@ if __name__ == '__main__':
 
     print 'done'
 
-
-
-      
-    
-
-
-
-    #print 'Totally {0} posts'.format(len(post_ids))
-
-    #print len(list(set(post_ids)))
-
-    #run_multithread_tasks(20, post_ids, 1000)
-"""
-    result = list(set(result))
-
-    with open('active_ids.txt', 'w') as new_fp:
-        new_fp.write('\n'.join(result))
-    print 'done'
-"""

@@ -132,6 +132,17 @@ if __name__ == '__main__':
         post_keys = [ u'from',  u'privacy', u'shares',  u'updated_time', u'likes',  u'created_time', u'message',  u'type', u'id',  u'status_type', u'comments']
         useful_keys = ['from', 'likes', 'id', 'comments', 'top10_comments', 'message', 'updated_time']
 
+        try:
+            del data['likes']['data']
+        except:
+            print 'deleting likes failed'
+
+        try:
+            del data['comments']['data']
+        except:
+            print 'deleting comments failed'
+
+
         for key in data.keys():
             if key not in useful_keys:
                 del data[key]
@@ -147,9 +158,10 @@ if __name__ == '__main__':
     def embed_top10_likemost_comments(data):
         post_id = data['id']
         its_comments = get_connections(post_id, 'comments', access_token=new_access_token)
-        sorted_likemost_comments = sorted(its_comments, key=lambda x: x if x.has_key['likes'] else 0, reverse=True)[:10]
-        data['top10_comments'] = sorted_likemost_comme
-        kill_useless_key(data)
+        sorted_likemost_comments = sorted(its_comments['data'], key=lambda x: x if x.has_key('likes') else 0, reverse=True)
+        top_10_sorted_likemost_comments = sorted_likemost_comments[0:10]
+        map(kill_useless_key, top_10_sorted_likemost_comments)
+        data['top10_comments'] = top_10_sorted_likemost_comments
         
     map(embed_top10_likemost_comments, top10_likemost_posts)
     map(embed_top10_likemost_comments, top10_commentmost_posts)

@@ -15,8 +15,8 @@ pprint = pp.pprint
 
 ma19_page = '118250504903757'
 tsaieng_page = '46251501064'
-#PAGE_ID = tsaieng_page
-PAGE_ID = ma19_page
+PAGE_ID = tsaieng_page
+#PAGE_ID = ma19_page
 
 ## doesn't matter
 COMMENT_GET_URL = 'https://graph.facebook.com/118250504903757_138587616203379/comments?access_token=306890979329593|Ynlw53_3jWp5RF9RbhLEzCz00ZA&limit=25&offset=25&__after_id=118250504903757_138587616203379_1049914'
@@ -173,10 +173,10 @@ if __name__ == '__main__':
             }
 
     import json
-    json_string = json.dumps(result, ensure_ascii=False)
+    json_string = json.dumps(result, ensure_ascii=True)
 
 
-    with open('./data/top10_posts.json', 'w') as fp:
+    with open('./data/tsaieng_top10_posts.json', 'w') as fp:
         fp.write(json_string)
 
     print 'done'

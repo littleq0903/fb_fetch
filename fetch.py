@@ -8,7 +8,7 @@ from accesstoken import *
 
 """ initialize Pprint Printer """
 
-pp = PrettyPrinter(indent=2, depth=2)
+pp = PrettyPrinter(indent=2, depth=3)
 pprint = pp.pprint
 
 
@@ -135,12 +135,14 @@ if __name__ == '__main__':
         try:
             del data['likes']['data']
         except:
-            print 'deleting likes failed'
+            #print 'deleting likes failed'
+            pass
 
         try:
             del data['comments']['data']
         except:
-            print 'deleting comments failed'
+            #print 'deleting comments failed'
+            pass
 
 
         for key in data.keys():
@@ -149,7 +151,7 @@ if __name__ == '__main__':
 
     map(kill_useless_key, posts)
 
-    pprint(posts)
+    #pprint(posts[0])
 
     top10_likemost_posts = sorted(posts, key=lambda x: x['likes']['count'] if x.has_key('likes') else 0, reverse=True)[:10]
     top10_commentmost_posts = sorted(posts, key=lambda x:x['comments']['count'] if x.has_key('comments') else 0, reverse=True)[:10]
@@ -167,7 +169,6 @@ if __name__ == '__main__':
     map(embed_top10_likemost_comments, top10_commentmost_posts)
 
         
-    pprint(embed_top10_likemost_comments)
 
     result = {
             'top10_likemost_posts': top10_likemost_posts,
